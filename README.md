@@ -1,5 +1,5 @@
-# https://tensegrity666.github.io/speechRecognition/
+## https://tensegrity666.github.io/speechRecognition/
 
-### speechRecognition
+## Speech Recognition API
 
-demo for presentation
+demo for this [presentation](https://slides.com/loremipsum-1/deck-63886a/fullscreen#/0/1)
