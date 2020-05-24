@@ -2,7 +2,7 @@ const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogni
 const SpeechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList;
 const SpeechRecognitionEvent = window.SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent;
 
-const colors = ['dark', 'light'];
+const colors = ['dark', 'light', 'white'];
 const grammar = '#JSGF V1.0; grammar colors; public <color> = ' + colors.join(' | ') + ' ;'
 
 const recognition = new SpeechRecognition();
@@ -19,21 +19,25 @@ const button = document.querySelector('#speech-btn');
 
 const ding = new Audio('10.mp3');
 const dong = new Audio('11.mp3');
+const error = new Audio('20.mp3');
 
 let micOn = false;
 
 onClick = () => {
   if (!micOn) {
-    ding.play();
     recognition.start();
-    micOn = true;
   }
 }
 
 button.addEventListener('click', onClick);
 
+recognition.onaudiostart = () => {
+  ding.play();
+  micOn = true;
+};
+
 recognition.onresult = (event) => {
-  const result = event.results[0][0].transcript;
+  const result = event.results[0][0].transcript.toLowerCase();
 
   if (colors.includes(result)) {
     switch (result) {
@@ -41,13 +45,16 @@ recognition.onresult = (event) => {
         page.classList.add('theme_dark');
         break;
 
+      case 'white':
+        page.classList.remove('theme_dark');
+        break;
+
       default:
         page.classList.remove('theme_dark');
         break;
     }
   }
-
-  console.log(result);
+  console.log(result)
 }
 
 recognition.onspeechend = () => {
@@ -57,12 +64,15 @@ recognition.onspeechend = () => {
 }
 
 recognition.onnomatch = () => {
-  diagnostic.textContent = `I didn't recognise that color.`;
+  error.play();
+  diagnostic.textContent = `I didn't recognise it.`;
   micOn = false;
 }
 
 recognition.onerror = (event) => {
-  dong.play();
-  diagnostic.textContent = `Error occurred in recognition: ${event.error}`;
+  error.play();
+  if (event.error !== 'no-speech') {
+    diagnostic.textContent = `Error occurred in recognition: ${event.error}`;
+  }
   micOn = false;
 }

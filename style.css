@@ -79,14 +79,32 @@ h1 {
 
 .toggler {
   position: absolute;
-  top: 5rem;
-  right: 17rem;
+  top: 0;
+  right: 7rem;
   width: 8rem;
   height: 8rem;
   background-color: transparent;
   border: none;
-  font-size: 7rem;
+  font-size: 5rem;
   outline: none;
+}
+
+.toggler__wrapper {
+  display: none;
+  width: 22rem;
+  position: absolute;
+  top: 3rem;
+  right: 6rem;
+  background-color: rgba(245, 222, 179, 0.2);
+  border-radius: 2rem;
+  text-align: center;
+  padding: 7rem 0 0.5rem;
+}
+
+.toggler__hint {
+  font-family: 'Permanent Marker', cursive;
+  margin: 0;
+  font-size: 2rem;
 }
 
 .page {
@@ -96,14 +114,16 @@ h1 {
   align-items: center;
   justify-content: space-evenly;
   width: 100vw;
-  height: 97vh;
   padding: 0;
   margin: 0 auto;
   font-size: 2rem;
 }
 
 .output {
+  position: absolute;
+  top: 12rem;
   color: var(--background-danger);
+  font-style: italic;
 }
 
 .photo {
