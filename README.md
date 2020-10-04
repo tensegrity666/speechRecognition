@@ -2,4 +2,4 @@
 
 ## Speech Recognition API
 
-demo for this [presentation](https://slides.com/loremipsum-1/deck-63886a/fullscreen#/0/1)
+demo for this [presentation](https://tensegrity666-presentation.netlify.app/)
